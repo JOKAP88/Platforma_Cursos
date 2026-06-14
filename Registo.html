@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="PT-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>Registo - TDias Formações</title>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="static/images/logo.png" alt="TDias Logo">
+                </a>
+            </div>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <a href="cursos.html">Cursos</a>
+                    <li><a href="#">Fórum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="login.html" class="btn-login">Entrar</a></li>
+                    <li><a href="registo.html" class="btn-registar">Registar</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-registro">
+        <form id="registo-form">
+            <h1>Bem-vindo à TDias Formações!</h1>
+            <p>Descubra uma variedade de cursos online para aprimorar suas habilidades.</p>
+            
+            <label for="registo-nome">Nome</label>
+            <input type="text" id="registo-nome" placeholder="Nome" required>
+            
+            <label for="registo-apelido">Apelido</label>
+            <input type="text" id="registo-apelido" placeholder="Apelido" required>
+            
+            <label for="registo-email">E-mail</label>
+            <input type="email" id="registo-email" placeholder="Email" class="Form-email" required>
+            
+            <label for="registo-password">Password</label>
+            <input type="password" id="registo-password" placeholder="Senha" class="Form-password" required>
+            
+            <label for="registo-repassword">Re-Password</label>
+            <input type="password" id="registo-repassword" placeholder="Confirme a Senha" class="Form-password" required>
+
+            <button type="submit" class="btn-signup">Registrar-se</button>
+        </form>
+    </section>
+
+    <footer class="main-footer">
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div> 
+        <p>&copy; 2026 TDias Formações. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

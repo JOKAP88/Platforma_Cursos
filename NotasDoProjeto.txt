@@ -1,0 +1,57 @@
+Cor de Botoes - background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+background color: background-image: linear-gradient(to right, #2c2b2b 0%, black 100%);
+
+
+iniciar servidor - npm start script.js
+
+Funcao inteira para adicionar o youtube ou em caso das aulas serem na 
+plataforma youtube, ficehiro a ser aplicado "player.html"
+
+ function mudarAulaAtiva(aula, elementoLi) {
+
+        console.log("📦 DADOS REAIS QUE CHEGARAM DA AULA:", aula);
+
+        aulaAtivaId = aula.id;
+        aulaTituloAtual.textContent = aula.titulo;
+
+        document.querySelectorAll(".aula-item").forEach(item => item.classList.remove("ativa"));
+        elementoLi.classList.add("ativa");
+
+        // CONFIGURAÇÃO DINÂMICA DO BOTÃO DEPENDENDO DO ESTADO DA AULA
+        btnConcluirAula.disabled = false;
+        if (aula.concluida === 1) {
+            btnConcluirAula.innerHTML = `<i class="fa-solid fa-check-double"></i> Aula Concluída!`;
+            btnConcluirAula.style.background = "#2ecc71"; // Verde
+        } else {
+            btnConcluirAula.innerHTML = `<i class="fa-regular fa-circle-check"></i> Marcar como Concluída`;
+            btnConcluirAula.style.background = "#00bcd4"; // Azul original
+        }
+
+        // Carrega o vídeo do YouTube
+        const fonteSegura = (aula.video_fonte || fontesegura==="youtube.com").toLowerCase().trim();
+
+if (fonteSegura === "youtube") {
+    // Injeta o player diretamente na página dentro do nosso wrapper-video CSS
+    videoPlayerContainer.innerHTML = `
+        <iframe 
+            width="100%" 
+            height="100%" 
+            src="https://www.youtube.com/embed/${aula.video_id}&rel=0&autoplay=0" 
+            title="${aula.titulo}" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    `;
+} else {
+    // Se a fonte não for youtube (ou houver erro de escrita na BD) avisa-nos na consola:
+    console.warn(`⚠️ Fonte de vídeo desconhecida ou não suportada: "${aula.video_fonte}" para a aula ID: ${aula.id}`);
+    videoPlayerContainer.innerHTML = `
+        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:#94a3b8; padding:20px; text-align:center;">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 2.5rem; color: #f59e0b; margin-bottom: 10px;"></i>
+            <p>Não foi possível carregar o player integrado para esta aula.</p>
+            <small style="color: #64748b;">Fonte configurada na BD: "${aula.video_fonte}"</small>
+        </div>
+    `;
+}
+    }

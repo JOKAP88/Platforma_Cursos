@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDias Formações - Player do Curso</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="player-body">
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">TDias<span>Formações</span></a>
+            </div>
+            <div class="nav-menu">
+                <ul>
+                    <li><a href="perfil.html"><i class="fa fa-user"></i> O Meu Perfil</a></li>
+                    <li><a href="cursos.html"><i class="fa fa-graduation-cap"></i> Cursos</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="player-container-principal">
+        <section class="area-video">
+            <div class="wrapper-video" id="video-player-container">
+            </div>
+            <div class="controlos-aula">
+                <h2 id="aula-titulo-atual">Título da Aula</h2>
+                <button id="btn-concluir-aula" class="btn-concluir" disabled>
+                    <i class="fa-regular fa-circle-check"></i> Marcar como Concluída
+                </button>
+            </div>
+        </section>
+
+        <aside class="sidebar-aulas">
+            <h3>Conteúdo do Curso</h3>
+            <ul id="lista-aulas-sidebar">
+                <p class="carregando">A carregar aulas...</p>
+            </ul>
+        </aside>
+    </main>
+
+    <script src="player.js?v=2"></script>
+</body>
+</html>

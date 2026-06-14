@@ -1,0 +1,1053 @@
+/* ==========================================
+   1. RESETS E CONFIGURAÇÕES GERAIS
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --text-color: white;
+    --primary-color: #8a2be2;
+    --bg-gradient: linear-gradient(to right, #2c2b2b 0%, black 100%);
+    --accent-gradient: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================
+   2. HEADER & MENU DE NAVEGAÇÃO
+   ========================================== */
+.main-header {
+    background-color: #1a1a1a;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-color);
+}
+
+/* Botões do Menu */
+.btn-login, .btn-registar {
+    background-color: var(--primary-color);
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn-login:hover, .btn-registar:hover {
+    background-color: #070000;
+}
+
+/* Submenu Dropdown */
+.has-submenu {
+    position: relative;
+}
+
+.has-submenu .submenu {
+    display: none;
+    position: absolute;
+    background-color: #1a1a1a;
+    min-width: 150px;
+    list-style: none;
+    padding: 10px 0;
+    border-radius: 5px;
+    top: 100%;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.submenu li a {
+    display: block;
+    padding: 10px 20px;
+    color: white;
+}
+
+.submenu li a:hover {
+    background-color: var(--primary-color);
+}
+
+.submenu li:active {
+    background-color: #e22b2b;
+}
+
+.show-submenu {
+    display: block !important;
+}
+
+/* ==========================================
+   3. HERO SECTIONS (HOME & FORMS)
+   ========================================== */
+.hero {
+    width: 100%;
+}
+
+.herosection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    background-image: var(--bg-gradient);
+    font-size: 30px;
+    color: var(--text-color);
+    text-align: center;
+    padding: 0 20px;
+}
+
+.btn {
+    background-image: var(--accent-gradient);
+    padding: 8px 20px;
+    border-radius: 3px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.herosection > .btn {
+    margin: 10px;
+    font-size: 18px;
+}
+
+/* Hero para as Páginas de Registo e Login */
+.hero-registro, .hero-Login {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0;
+    background-image: var(--bg-gradient);
+}
+
+/* ==========================================
+   4. COMPONENTE: FLIP CARDS (GRELHA DE CURSOS)
+   ========================================== */
+.Servicos-container {
+    padding: 60px 20px;
+    background-image: var(--bg-gradient);
+}
+
+/* Grelha moderna e flexível para acomodar os cartões injetados */
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estrutura 3D do Cartão */
+.flip-card {
+    background-color: transparent;
+    width: 290px;
+    height: 390px; 
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* --- FACE DA FRENTE --- */
+.card-front {
+    background-color: #ffffff;
+    justify-content: space-between;
+    padding-bottom: 15px;
+}
+
+.card-front img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.card-front h3 {
+    margin: 10px 15px;
+    font-size: 1.15rem;
+    color: #222;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Barra superior com metadados do curso */
+.card-front-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    gap: 10px;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.card-front-info span {
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.card-front-info span:not(:last-child)::after {
+    content: "  •";
+    padding-left: 5px;
+    color: #aaa;
+}
+
+/* Indicador visual de clique na frente */
+.btn-fake {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 20px;
+    margin: 0 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+/* --- FACE DO VERSO --- */
+.card-back {
+    background-color: #1a1a1a;
+    color: white;
+    transform: rotateY(180deg);
+    padding: 20px;
+}
+
+.back-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-back h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.15rem;
+    color: #fff;
+    text-align: left;
+}
+
+.card-back p {
+    font-size: 0.85rem;
+    color: #ccc;
+    line-height: 1.5;
+    margin: 0;
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.card-back hr {
+    border: 0;
+    border-top: 1px solid #333;
+    margin: 12px 0;
+}
+
+.back-footer {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.back-footer .formador {
+    color: #aaa;
+}
+
+.back-footer .valor {
+    color: #28a745;
+}
+
+/* Botão Real de Acesso */
+.btn-ver-curso {
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    display: block;
+    transition: background 0.2s;
+}
+
+.btn-ver-curso:hover {
+    background-color: #218838;
+}
+
+/* ==========================================
+   5. SECÇÃO DE ESTATÍSTICAS (HEROSECTION2)
+   ========================================== */
+.container2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-image: var(--bg-gradient);
+    padding: 0 20px;
+}
+
+.card-grid2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px 0;
+}
+
+.card2 {
+    background-image: radial-gradient( circle farthest-corner at 50% 52.5%, rgba(14,53,92,1) 0%, rgba(16,14,72,1) 90% );
+    color: white;
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid black;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-stat { align-items: center; justify-content: center; text-align: center; }
+.stat-icon { font-size: 20px; margin-bottom: 10px; }
+.stat-number { font-size: 24px; font-weight: bold; margin: 5px 0; }
+.stat-label { font-size: 18px; color: #b0b0b0; }
+
+.card-desc { align-items: flex-start; justify-content: flex-start; }
+.card-desc h2 { font-size: 22px; margin-bottom: 12px; color: var(--primary-color); }
+.card-desc p { font-size: 15px; line-height: 1.6; color: #d0d0d0; }
+
+/* ==========================================
+   6. FORMULÁRIOS (REGISTO & LOGIN)
+   ========================================== */
+#registo-form, #Login-form {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    width: 100%;
+    max-width: 450px;
+    background-image: var(--accent-gradient);
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(76, 128, 241, 0.5);
+    border-radius: 15px;
+}
+
+#registo-form h1, #Login-form h1 { font-size: 28px; margin-bottom: 15px; color: white; }
+#registo-form p, #Login-form p { font-size: 15px; margin-bottom: 25px; color: #f0f0f0; }
+#registo-form label, #Login-form label { font-size: 16px; margin-bottom: 5px; color: white; }
+
+#registo-form input, #Login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#registo-form .btn-signup, #Login-form .btn-signin {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#registo-form .btn-signup:hover, #Login-form .btn-signin:hover {
+    background-color: black;
+}
+
+/* ==========================================
+   7. SECÇÃO CTA REGISTO & FOOTER
+   ========================================== */
+.Register-container {
+    display: flex;
+    background-image: var(--bg-gradient);
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    width: 100%;
+}
+
+.Register {
+    background-image: var(--accent-gradient);
+    color: white;
+    width: 90%;
+    max-width: 1000px;
+    padding: 50px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.Register h2 { font-size: 36px; margin-bottom: 20px; color: #ffffff; }
+.Register p { font-size: 18px; margin-bottom: 30px; color: #f0f0f0; }
+.Register .btn { background-color: #e22b2b; font-size: 16px; padding: 12px 25px; }
+
+.main-footer {
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.social-icons { margin-bottom: 10px; }
+.social-icons a {
+    font-size: 1.2em;
+    background: #fcfcfc;
+    color: #1a1a1a;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    text-align: center;
+    line-height: 35px;
+    margin: 0 5px;
+}
+
+.nav-menu ul li span {
+    display: inline-block;
+    padding: 0 5px;
+    font-family: inherit;
+}
+
+
+
+
+/* ==========================================
+   10. PAINEL DE ADMINISTRAÇÃO (admin.html)
+   ========================================== */
+.admin-container {
+    display: flex;
+    flex: 1;
+    min-height: calc(100vh - 120px);
+    background-color: #f4f6f9;
+}
+
+/* Barra Lateral (Sidebar) */
+.admin-sidebar {
+    width: 250px;
+    background-color: #1a1a1a;
+    color: white;
+    padding: 30px 15px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.admin-sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.admin-sidebar ul {
+    list-style: none;
+}
+
+.admin-sidebar ul li {
+    margin-bottom: 12px;
+}
+
+.admin-sidebar ul li a {
+    color: #ccc;
+    text-decoration: none;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.admin-sidebar ul li a:hover, 
+.admin-sidebar ul li a.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Área de Conteúdo Principal */
+.admin-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente o título e o formulário */
+}
+
+.admin-header-title {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 15px;
+}
+
+.admin-header-title {
+    width: 100%;
+    max-width: 800px; /* Alinhado com a largura do formulário */
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 15px;
+    text-align: left; /* Mantém o texto alinhado à esquerda dentro do bloco */
+}
+
+.admin-header-title p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Formulário do Painel */
+.admin-form {
+    background-color: white;
+    padding: 40px; /* Aumentado ligeiramente para dar mais espaço respiratório */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 800px; /* Uma largura robusta e elegante para ecrãs Web */
+}
+
+.form-group-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group-row .form-group {
+    margin-bottom: 0; /* Reseta margem interna quando em linha */
+}
+
+.admin-form label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.admin-form input, 
+.admin-form select, 
+.admin-form textarea {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #333;
+    background-color: #fff;
+}
+
+.admin-form input:focus, 
+.admin-form select:focus, 
+.admin-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(138, 43, 226, 0.2);
+}
+
+/* Botão de Submissão */
+.btn-admin-submit {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-block;
+}
+
+.btn-admin-submit:hover {
+    background-color: #218838;
+}
+
+/* Responsividade do Painel */
+@media (max-width: 768px) {
+    .admin-container {
+        flex-direction: column;
+    }
+    .admin-sidebar {
+        width: 100%;
+        padding: 20px;
+    }
+    .form-group-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-group-row .form-group {
+        margin-bottom: 20px;
+    }
+}
+
+/* ==========================================
+   11. TABELA DE GESTÃO NO PAINEL ADMIN
+   ========================================== */
+.admin-lista-section {
+    width: 100%;
+    max-width: 800px;
+    margin-top: 50px;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.admin-lista-section h3 {
+    color: #222;
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.admin-table th, 
+.admin-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+}
+
+.admin-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #555;
+}
+
+.admin-table img {
+    width: 50px;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Botões de Ação */
+.btn-acao-editar {
+    background-color: #ffc107;
+    color: #212529;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
+    transition: 0.2s;
+}
+
+.btn-acao-editar:hover {
+    background-color: #e0a800;
+}
+
+.btn-acao-remover {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-acao-remover:hover {
+    background-color: #c82333;
+}
+
+/* Estado de Edição do Formulário */
+.admin-form.modo-edicao {
+    border: 2px solid #ffc107;
+    background-color: #fffdf5;
+}
+
+/* ==========================================
+   ESTILOS DA PÁGINA DE PERFIL / DASHBOARD
+   ========================================== */
+.perfil-main {
+    padding: 40px 20px;
+    margin-top: 80px; /* Evita que o menu fixo tape o conteúdo */
+    min-height: 80vh;
+}
+
+.perfil-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #1e1e24; /* Ajusta para a cor escura do teu site */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.perfil-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: white;
+}
+
+.avatar-zona i {
+    font-size: 60px;
+    color: #00bcd4; /* Cor azul ciano do teu menu */
+}
+
+.perfil-separador {
+    border: 0;
+    height: 1px;
+    background: #333;
+    margin: 30px 0;
+}
+
+.seccao-titulo h3 {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.seccao-titulo p {
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+/* Grid que organiza os cartões de cursos inscritos */
+.meus-cursos-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* O Cartão do Curso Inscrito */
+.curso-inscrito-card {
+    display: flex;
+    background: #2a2a35;
+    border-radius: 8px;
+    overflow: hidden;
+    border-left: 5px solid #00bcd4; /* Barra lateral decorativa */
+    transition: transform 0.2s;
+}
+
+.curso-inscrito-card:hover {
+    transform: translateX(5px);
+}
+
+.curso-inscrito-card img {
+    width: 180px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.curso-inscrito-info {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.curso-inscrito-info .categoria {
+    background: #00bcd4;
+    color: #121214;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 4px;
+    width: fit-content;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.curso-inscrito-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+
+.curso-inscrito-info .data-inscricao {
+    font-size: 13px;
+    color: #aaa;
+    margin: 0 0 10px 0;
+}
+
+.badge-status {
+    background: rgba(0, 230, 118, 0.1);
+    color: #00e676;
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 20px;
+    width: fit-content;
+    border: 1px solid #00e676;
+}
+
+.progresso-wrapper {
+    margin: 15px 0;
+}
+
+.barra-progresso-fundo {
+    width: 100%;
+    height: 8px;
+    background-color: #e2e8f0; /* Cinza claro */
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.barra-progresso-preenchimento {
+    height: 100%;
+    background-color: #00bcd4; /* O teu azul ciano (podes mudar para #2ecc71 se preferires verde) */
+    width: 0%; /* Será controlado dinamicamente pelo inline-style do JS */
+    transition: width 0.5s ease-in-out; /* Efeito suave de enchimento */
+}
+
+.progresso-texto {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Responsividade para telemóveis */
+@media (max-width: 600px) {
+    .curso-inscrito-card {
+        flex-direction: column;
+    }
+    .curso-inscrito-card img {
+        width: 100%;
+        height: 150px;
+    }
+    .perfil-header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
+/* ==========================================================================
+   ESTILOS MODERNOS DO PLAYER (DARK MODE & CINEMA)
+   ========================================================================== */
+body {
+    background-color: #0f172a; /* Azul escuro da noite */
+    color: #f8fafc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.player-container-principal {
+    display: flex;
+    height: calc(100vh - 70px); /* Ocupa a altura toda do ecrã menos o menu */
+    background: #0f172a;
+}
+
+/* Área da Esquerda: Vídeo e Título */
+.area-video {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    background: #020617; /* Fundo ainda mais escuro para o vídeo destacar */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.wrapper-video {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Proporção de ecrã 16:9 perfeita */
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.wrapper-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Controlos Abaixo do Vídeo */
+.controlos-aula {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: #1e293b;
+    border-radius: 8px;
+}
+
+.controlos-aula h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+/* Botão de Conclusão Modernizado */
+#btn-concluir-aula {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#btn-concluir-aula:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+/* Barra Lateral Direita: Lista de Aulas */
+.sidebar-aulas {
+    flex: 1;
+    max-width: 400px;
+    min-width: 300px;
+    background: #1e293b;
+    border-left: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-topo {
+    padding: 20px;
+    background: #0f172a;
+    border-bottom: 1px solid #334155;
+}
+
+.sidebar-topo h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #00bcd4;
+}
+
+#lista-aulas-sidebar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; /* Scroll macio se houver muitas aulas */
+    flex: 1;
+}
+
+/* Itens da Aula */
+.aula-item {
+    padding: 18px 20px;
+    border-bottom: 1px solid #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.aula-item:hover {
+    background: #475569;
+}
+
+.aula-item.ativa {
+    background: #0f172a;
+    border-left: 4px solid #00bcd4; /* Barra de destaque ciano */
+}
+
+.aula-item-conteudo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+}
+
+.aula-item-conteudo i {
+    font-size: 1.1rem;
+}

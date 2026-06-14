@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="PT-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>Login - TDias Formações</title>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="static/images/logo.png" alt="TDias Logo">
+                </a>
+            </div>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <a href="cursos.html">Cursos</a>
+                    <li><a href="#">Fórum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="login.html" class="btn-login">Entrar</a></li>
+                    <li><a href="registo.html" class="btn-registar">Registar</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-Login">
+        <form id="Login-form">
+            <h1>Bem-vindo De Novo</h1>
+            <p>Por favor, faz o login na sua conta.</p>
+
+            <label for="login-email">E-mail</label>
+            <input type="email" id="login-email" placeholder="Email" class="Form-email" required>
+
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="Senha" class="Form-password" required>
+
+            <button type="submit" class="btn-signin">Entrar</button>
+            <p><a href="#" id="link-esqueci-password">Esqueceu a password?</a></p>
+        </form>
+
+        <form id="Recuperar-form" style="display: none;">
+            <h1>Recuperar Password</h1>
+            <p>Introduza o seu e-mail e escolha uma nova password para a sua conta.</p>
+
+            <label for="recuperar-email">E-mail da Conta</label>
+            <input type="email" id="recuperar-email" placeholder="O seu email de registo" class="Form-email" required>
+
+            <label for="recuperar-nova-password">Nova Password</label>
+            <input type="password" id="recuperar-nova-password" placeholder="Nova Senha" class="Form-password" required>
+
+            <button type="submit" class="btn-signin" style="background: #2ecc71;">Atualizar Password</button>
+
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="#" id="link-voltar-login" style="color: #64748b; font-size: 0.9rem; text-decoration: none;">Voltar para o Login</a>
+            </div>
+        </form>
+    </section>
+
+    <footer class="main-footer">
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div> 
+        <p>&copy; 2026 TDias Formações. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

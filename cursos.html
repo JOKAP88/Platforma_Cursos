@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="PT-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - TDias Formações</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="static/images/logo.png" alt="TDias Logo">
+                </a>
+            </div>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cursos.html" class="active">Cursos</a></li>
+                    <li><a href="#">Fórum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="login.html" class="btn-login">Entrar</a></li>
+                    <li><a href="registo.html" class="btn-registar">Registar</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="herosection">
+            <h1>Cursos Disponíveis</h1>
+            <p>Explore nossa gama completa de cursos online.</p>
+        </div>
+    </section>
+
+    <section class="filtro-section">
+        <div class="container">
+            <label for="categoria-filtro">Filtrar por Categoria:</label>
+            <select id="categoria-filtro">
+                <option value="todos">Todos</option>
+                <option value="desenvolvimento web">Desenvolvimento Web</option>
+                <option value="programação">Programação</option>
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="react">React</option>
+                <option value="node.js">Node.js</option>
+            </select>
+        </div>
+    </section>
+    
+
+    <section class="todos-cursos">
+        <div class="Servicos-container">
+            <div class="card-grid" id="dinamico-cursos-grid"></div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 TDias Formações. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="PT-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>Painel Admin - TDias Formações</title>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="static/images/logo.png" alt="TDias Logo">
+                </a>
+            </div>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="has-submenu">
+                        <a href="cursos.html">Formações</a>
+                        <ul class="submenu">
+                            <li><a href="cursos.html?cat=html">HTML</a></li>
+                            <li><a href="cursos.html?cat=css">CSS</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Fórum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="login.html" class="btn-login">Entrar</a></li>
+                    <li><a href="registo.html" class="btn-registar">Registar</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-container">
+        <div class="admin-sidebar">
+            <h3><i class="fa fa-cogs"></i> Gestão</h3>
+            <ul>
+                <li><a href="#" class="active"><i class="fa fa-book"></i> Inserir Curso</a></li>
+                <li><a href="index.html"><i class="fa fa-arrow-left"></i> Voltar ao Site</a></li>
+            </ul>
+        </div>
+
+        <div class="admin-content">
+            <div class="admin-header-title">
+                <h2>Painel de Administração</h2>
+                <p>Adicione novas formações ao catálogo da plataforma.</p>
+            </div>
+
+            <form id="admin-curso-form" class="admin-form">
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="curso-novo-titulo">Título do Curso</label>
+                        <input type="text" id="curso-novo-titulo" placeholder="Ex: Introdução ao Python" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="curso-novo-categoria">Categoria</label>
+                        <select id="curso-novo-categoria" required>
+                            <option value="">Selecione...</option>
+                            <option value="desenvolvimento web">Desenvolvimento Web</option>
+                            <option value="programação">Programação</option>
+                            <option value="javascript">JavaScript</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="curso-novo-nivel">Nível</label>
+                        <select id="curso-novo-nivel" required>
+                            <option value="Iniciante">Iniciante</option>
+                            <option value="Intermédio">Intermédio</option>
+                            <option value="Avançado">Avançado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="curso-novo-duracao">Duração (Horas)</label>
+                        <input type="text" id="curso-novo-duracao" placeholder="Ex: 35h" required>
+                    </div>
+                </div>
+
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="curso-novo-formador">Formador</label>
+                        <input type="text" id="curso-novo-formador" placeholder="Nome do instrutor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="curso-novo-preco">Preço (€)</label>
+                        <input type="text" id="curso-novo-preco" placeholder="Ex: €89" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="curso-novo-imagem">URL da Imagem do Card</label>
+                    <input type="file" id="curso-novo-imagem" accept="image/*" required>
+                        
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="curso-novo-descricao">Descrição Breve do Curso</label>
+                    <textarea id="curso-novo-descricao" rows="4" placeholder="Escreva o resumo do curso que aparecerá no verso do cartão e na página de detalhes..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-admin-submit"><i class="fa fa-plus"></i> Publicar Curso</button>
+            </form>
+            <div class="admin-lista-section">
+                <h3>Cursos Publicados</h3>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Imagem</th>
+                                <th>Título</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-tabela-cursos">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 TDias Formações. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

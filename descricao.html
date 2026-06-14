@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pagina-titulo">Curso - Detalhes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="static/images/logo.png" alt="TDias Logo">
+                </a>
+            </div>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cursos.html" class="active">Cursos</a></li>
+                    <li class="has-submenu">
+                        <a href="cursos.html">Formações</a>
+                        <ul class="submenu">
+                            <li><a href="cursos.html?cat=html">HTML</a></li>
+                            <li><a href="cursos.html?cat=css">CSS</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Fórum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="login.html" class="btn-login">Entrar</a></li>
+                    <li><a href="registo.html" class="btn-registar">Registar</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding:40px; max-width:1000px; margin:0 auto;">
+        <h1 id="curso-titulo">A carregar curso...</h1>
+        
+        <p><strong>Formador:</strong> <span id="curso-formador">---</span></p>
+        <p><strong>Duração:</strong> <span id="curso-duracao">---</span></p>
+        
+        <img id="curso-imagem" src="" alt="Preview do Curso" style="width:100%; max-width:600px; display:block; margin:20px 0; border-radius:8px; background-color: #eee; min-height: 200px;">
+        
+        <h2>Sobre o curso</h2>
+        <p id="curso-descricao">A carregar a descrição detalhada do curso...</p>
+        
+        <h3>Preço</h3>
+        <p><strong id="curso-preco">---</strong></p>
+        
+        <div style="margin-top: 30px; display: flex; gap: 15px;">
+            <a href="cursos.html" class="btn-ver-curso" style="background-color: #555;">Voltar aos Cursos</a>
+            <button id="btn-inscrever" class="btn-primary" style="border: none; cursor: pointer;">Inscrever-me no Curso</button>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 TDias Formações. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
