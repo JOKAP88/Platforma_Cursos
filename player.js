@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Carrega o vídeo do YouTube
-        const fonteSegura = (aula.video_fonte || fontesegura==="youtube.com").toLowerCase().trim();
+        const fonteSegura = (aula.video_fonte || "").toLowerCase().trim();
 
 if (fonteSegura === "youtube") {
     // Injeta o player diretamente na página dentro do nosso wrapper-video CSS

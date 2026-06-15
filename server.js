@@ -129,22 +129,37 @@ app.post('/api/registar', (req, res) => {
 });
 
 // Rota 2: Fazer Login
-app.post('/api/login', (req, res) => {
+app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
 
-    const sql = "SELECT id, nome, apelido, email, cargo FROM utilizadores WHERE email = ? AND password = ?";
+    const sql = "SELECT id, nome, apelido, email, cargo, password FROM utilizadores WHERE email = ?";
     
-    db.query(sql, [email, password], (err, results) => {
-        if (err) {
-            console.error("Erro no login:", err);
-            return res.status(500).json({ message: "Erro interno no servidor." });
+    db.query(sql, [email], async (err, results) => {
+        if (err) return res.status(500).json({ message: "Erro interno no servidor." });
+
+        if (results.length === 0) {
+            return res.status(401).json({ success: false, message: "Email ou password incorretos." });
         }
 
-        if (results.length > 0) {
+        const utilizador = results[0];
+        const passwordNaBD = utilizador.password;
+
+        // Detecta se a password está em bcrypt ou texto limpo
+        let passwordCorreta = false;
+        if (passwordNaBD.startsWith('$2b$')) {
+            // Password encriptada com bcrypt
+            passwordCorreta = await bcrypt.compare(password, passwordNaBD);
+        } else {
+            // Password em texto limpo (utilizadores antigos)
+            passwordCorreta = (password === passwordNaBD);
+        }
+
+        if (passwordCorreta) {
+            const { password: _, ...utilizadorSemPassword } = utilizador;
             res.json({ 
                 success: true, 
                 message: "Login efetuado com sucesso!", 
-                utilizador: results[0] 
+                utilizador: utilizadorSemPassword
             });
         } else {
             res.status(401).json({ success: false, message: "Email ou password incorretos." });
@@ -257,7 +272,7 @@ app.get('/api/cursos/:cursoId/aulas', (req, res) => {
 
     const sql = `
         SELECT 
-            a.id, 
+            a.curso_id, 
             a.titulo, 
             a.ordem, 
             a.video_fonte, 
@@ -312,6 +327,53 @@ app.post('/api/progresso/concluir', (req, res) => {
                 return res.json({ status: "concluido", message: "Aula concluída com sucesso! 🎉" });
             });
         }
+    });
+});
+
+app.put('/api/cursos/:id', (req, res) => {
+    const { id } = req.params;
+    const { titulo, categoria, nivel, duracao, formador, preco, descricao } = req.body;
+
+    const sql = `
+        UPDATE cursos 
+        SET titulo = ?, categoria = ?, nivel = ?, duracao = ?, formador = ?, preco = ?, descricao = ?
+        WHERE id = ?
+    `;
+    const valores = [titulo, categoria, nivel, duracao, formador, preco, descricao, id];
+
+    db.query(sql, valores, (err, result) => {
+        if (err) {
+            console.error("❌ Erro ao atualizar curso:", err);
+            return res.status(500).json({ error: "Erro ao atualizar o curso." });
+        }
+        res.json({ message: "Curso atualizado com sucesso!" });
+    });
+});
+
+// Rota E: Listar todos os formandos (GET)
+app.get('/api/formandos', (req, res) => {
+    const sql = "SELECT id, nome, apelido, email, cargo, ativo FROM utilizadores ORDER BY nome ASC";
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error("❌ Erro ao listar formandos:", err);
+            return res.status(500).json({ error: "Erro ao listar utilizadores." });
+        }
+        res.json(results);
+    });
+});
+
+// Rota F: Ativar/Desativar formando (PUT)
+app.put('/api/formandos/:id/ativar', (req, res) => {
+    const { id } = req.params;
+    const { ativo } = req.body;
+
+    const sql = "UPDATE utilizadores SET ativo = ? WHERE id = ?";
+    db.query(sql, [ativo, id], (err, result) => {
+        if (err) {
+            console.error("❌ Erro ao atualizar estado do formando:", err);
+            return res.status(500).json({ error: "Erro ao atualizar o formando." });
+        }
+        res.json({ message: `Formando ${ativo == 1 ? 'ativado' : 'desativado'} com sucesso!` });
     });
 });
 

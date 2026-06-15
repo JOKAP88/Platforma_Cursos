@@ -815,6 +815,7 @@ body {
     overflow: hidden;
     border-left: 5px solid #00bcd4; /* Barra lateral decorativa */
     transition: transform 0.2s;
+    margin-bottom: 20px;
 }
 
 .curso-inscrito-card:hover {
