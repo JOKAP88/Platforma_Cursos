@@ -1,4 +1,4 @@
-// ==========================================
+
 // 1. CONEXÃO COM O SERVIDOR (BACK-END)
 // ==========================================
 let listaCursos = [];
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ==========================================
+  
     // 2. MENU MOBILE
     // ==========================================
     if (mobileToggle && navMenu) {
@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================
-    // 3. RENDERIZAR CARTÕES DE CURSOS
+    
+    // 3. POPULAR CARTÕES DE CURSOS
     // ==========================================
     function renderizarCursos(cursos, elementoDestino) {
         if (!elementoDestino) return;
@@ -95,8 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================
-    // 4. FILTRO DE CATEGORIAS
+    
+    // 4. FILTRO POR CATEGORIAS
     // ==========================================
     if (filtroCategoria && gridCursos) {
         filtroCategoria.addEventListener("change", (evento) => {
@@ -110,8 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================
-    // 6. PÁGINA DE DESCRIÇÃO DO CURSO
+    // 5. PÁGINA DE DESCRIÇÃO POR CURSO
     // ==========================================
     if (document.getElementById("curso-titulo")) {
         const parametros = new URLSearchParams(window.location.search);
@@ -164,8 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
         inicializarDescricao();
     }
 
-    // ==========================================
-    // 9. MENU DINÂMICO (LOGIN/LOGOUT)
+    // 6. MENU DINÂMICO (LOGIN/LOGOUT)
     // ==========================================
     function ajustarMenuNavegacao() {
         const ulMenu = document.querySelector(".nav-menu ul");
@@ -207,8 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     ajustarMenuNavegacao();
 
-    // ==========================================
-    // 9.1 REGISTO
+    // 6.1 REGISTO
     // ==========================================
     const formRegisto = document.getElementById("registo-form"); 
     if (formRegisto) {
@@ -239,8 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================
-    // 9.2 LOGIN E RECUPERAÇÃO DE PASSWORD
+    // 6.2 LOGIN E RECUPERAÇÃO DE PASSWORD
     // ==========================================
     const formLogin = document.getElementById("Login-form"); 
     if (formLogin) {
@@ -317,8 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==========================================
-    // 10. PAINEL ADMIN — CURSOS + EDITAR + FORMANDOS
+    // 7. PAINEL ADMIN - GESTÃO DE CURSOS E FORMANDOS
     // ==========================================
     const formAdminCurso = document.getElementById("admin-curso-form");
     const tabelaCursosCorpo = document.getElementById("admin-tabela-cursos");
@@ -395,7 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // --- TABELA DE CURSOS ---
+        // --- POPULAR TABELA DE CURSOS ---
         async function renderizarTabelaAdmin() {
             if (!tabelaCursosCorpo) return;
             await carregarCursosDoServidor(); 
@@ -496,11 +491,13 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizarTabelaAdmin();
     }
 
-    // ==========================================
-    // 10.2 SEPARADOR DE FORMANDOS (PAINEL ADMIN)
+    
+    // 7.2 SEPARADOR DE FORMANDOS (PAINEL ADMIN)
+    // Controlo de acessos por inscrição e curso 
     // ==========================================
     const tabelaFormandosCorpo = document.getElementById("admin-tabela-formandos");
     if (tabelaFormandosCorpo) {
+
         async function carregarFormandos() {
             try {
                 const resposta = await fetch('http://localhost:3000/api/formandos');
@@ -508,65 +505,116 @@ document.addEventListener("DOMContentLoaded", () => {
                 tabelaFormandosCorpo.innerHTML = "";
 
                 if (formandos.length === 0) {
-                    tabelaFormandosCorpo.innerHTML = `<tr><td colspan="5" style="text-align:center; padding:20px; color:#aaa;">Nenhum formando registado.</td></tr>`;
+                    tabelaFormandosCorpo.innerHTML = `<tr><td colspan="3" style="text-align:center;padding:20px;color:#aaa;">Nenhum formando registado.</td></tr>`;
                     return;
                 }
 
-                formandos.forEach(f => {
-                    const tr = document.createElement("tr");
-                    const estadoBadge = f.ativo == 1
-                        ? `<span style="background:#2ecc71;color:white;padding:3px 10px;border-radius:12px;font-size:12px;">Ativo</span>`
-                        : `<span style="background:#e22b2b;color:white;padding:3px 10px;border-radius:12px;font-size:12px;">Inativo</span>`;
+                for (const f of formandos) {
+                    let inscricoes = [];
+                    try {
+                        const resIns = await fetch(`http://localhost:3000/api/formandos/${f.id}/inscricoes`);
+                        inscricoes = await resIns.json();
+                    } catch(e) { inscricoes = []; }
 
-                    const btnAtivar = f.ativo == 1
-                        ? `<button class="btn-toggle-ativo" data-id="${f.id}" data-estado="1" style="background:#e22b2b;color:white;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;">Desativar</button>`
-                        : `<button class="btn-toggle-ativo" data-id="${f.id}" data-estado="0" style="background:#2ecc71;color:white;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;">Ativar</button>`;
-
-                    tr.innerHTML = `
-                        <td>${f.nome} ${f.apelido}</td>
-                        <td>${f.email}</td>
-                        <td>${f.cargo}</td>
-                        <td>${estadoBadge}</td>
-                        <td>${btnAtivar}</td>
+                    
+                    const trFormando = document.createElement("tr");
+                    trFormando.style.cssText = "background:#1a2535; border-top:2px solid #334155;";
+                    trFormando.innerHTML = `
+                        <td style="padding:12px 15px;">
+                            <strong style="color:white;">${f.nome} ${f.apelido}</strong><br>
+                            <small style="color:#64748b;">${f.email}</small>
+                        </td>
+                        <td style="padding:12px 15px;">
+                            <span style="background:#334155;color:#94a3b8;padding:3px 8px;border-radius:4px;font-size:12px;">${f.cargo}</span>
+                        </td>
+                        <td style="padding:12px 15px;color:#64748b;font-size:13px;">
+                            ${inscricoes.length === 0
+                                ? '<em style="color:#475569;">Sem inscrições</em>'
+                                : `${inscricoes.length} curso(s) inscrito(s)`}
+                        </td>
                     `;
-                    tabelaFormandosCorpo.appendChild(tr);
-                });
+                    tabelaFormandosCorpo.appendChild(trFormando);
 
-                // Eventos dos botões ativar/desativar
-                tabelaFormandosCorpo.querySelectorAll(".btn-toggle-ativo").forEach(btn => {
+                    if (inscricoes.length === 0) {
+                        const trVazio = document.createElement("tr");
+                        trVazio.innerHTML = `
+                            <td colspan="3" style="padding:8px 15px 12px 30px;color:#475569;font-size:13px;font-style:italic;">
+                                Este utilizador ainda não se inscreveu em nenhum curso.
+                            </td>`;
+                        tabelaFormandosCorpo.appendChild(trVazio);
+                    }
+
+                    inscricoes.forEach(ins => {
+                        const ativo = ins.status === 'ativo';
+                        const trIns = document.createElement("tr");
+                        trIns.style.cssText = "background:#0f172a;";
+                        trIns.innerHTML = `
+                            <td style="padding:8px 15px 8px 35px;color:#94a3b8;font-size:13px;">
+                                <i class="fa fa-graduation-cap" style="color:#334155;margin-right:6px;"></i>
+                                ${ins.curso_titulo}
+                            </td>
+                            <td style="padding:8px 15px;">
+                                ${ativo
+                                    ? `<span style="background:rgba(46,204,113,0.15);color:#2ecc71;padding:3px 10px;border-radius:12px;font-size:12px;border:1px solid #2ecc71;">✅ Ativo</span>`
+                                    : `<span style="background:rgba(226,43,43,0.15);color:#e22b2b;padding:3px 10px;border-radius:12px;font-size:12px;border:1px solid #e22b2b;">⏳ Pendente</span>`
+                                }
+                            </td>
+                            <td style="padding:8px 15px;">
+                                <button
+                                    class="btn-toggle-inscricao"
+                                    data-inscricao-id="${ins.inscricao_id}"
+                                    data-estado="${ativo ? 1 : 0}"
+                                    style="background:${ativo ? '#e22b2b' : '#2ecc71'};color:white;border:none;
+                                           padding:5px 14px;border-radius:5px;cursor:pointer;font-size:13px;font-weight:bold;">
+                                    ${ativo ? 'Desativar' : 'Ativar'}
+                                </button>
+                            </td>
+                        `;
+                        tabelaFormandosCorpo.appendChild(trIns);
+                    });
+                }
+
+                tabelaFormandosCorpo.querySelectorAll(".btn-toggle-inscricao").forEach(btn => {
                     btn.addEventListener("click", async () => {
-                        const idUser = btn.getAttribute("data-id");
+                        const inscricaoId = btn.getAttribute("data-inscricao-id");
                         const estadoAtual = btn.getAttribute("data-estado");
-                        const novoEstado = estadoAtual == 1 ? 0 : 1;
+                        const novoEstado  = estadoAtual == 1 ? 0 : 1;
+
+                        btn.disabled = true;
+                        btn.textContent = "A guardar...";
 
                         try {
-                            const resposta = await fetch(`http://localhost:3000/api/formandos/${idUser}/ativar`, {
+                            const resposta = await fetch(`http://localhost:3000/api/formandos/${inscricaoId}/ativar`, {
                                 method: 'PUT',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({ ativo: novoEstado })
                             });
+                            const resultado = await resposta.json();
                             if (resposta.ok) {
-                                carregarFormandos(); // Recarrega a tabela
+                                await carregarFormandos();
                             } else {
-                                alert("Erro ao atualizar o estado do formando.");
+                                alert("❌ " + (resultado.error || "Erro ao atualizar."));
+                                btn.disabled = false;
+                                btn.textContent = estadoAtual == 1 ? "Desativar" : "Ativar";
                             }
                         } catch (erro) {
-                            console.error("Erro ao atualizar formando:", erro);
+                            console.error("Erro:", erro);
+                            btn.disabled = false;
                         }
                     });
                 });
 
             } catch (erro) {
                 console.error("Erro ao carregar formandos:", erro);
-                tabelaFormandosCorpo.innerHTML = `<tr><td colspan="5" style="text-align:center; color:red; padding:20px;">Erro ao ligar ao servidor.</td></tr>`;
+                tabelaFormandosCorpo.innerHTML = `<tr><td colspan="3" style="text-align:center;color:red;padding:20px;">Erro ao ligar ao servidor.</td></tr>`;
             }
         }
 
         carregarFormandos();
     }
 
-    // ==========================================
-    // 11. DASHBOARD DO ALUNO (PERFIL.HTML)
+    
+    // 8. DASHBOARD DO ALUNO
     // ==========================================
     const gridMeusCursos = document.getElementById("meus-cursos-grid");
     if (!formAdminCurso && !gridMeusCursos) {

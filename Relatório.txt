@@ -1,0 +1,214 @@
+================================================================================
+  TDIAS FORMAÇÕES — GUIA DE INSTALAÇÃO E TESTES
+  Documento para entrega ao supervisor
+================================================================================
+
+--------------------------------------------------------------------------------
+1. DESCRIÇÃO DO PROJETO
+--------------------------------------------------------------------------------
+
+Plataforma de cursos online desenvolvida com:
+  - Frontend : HTML5, CSS3, JavaScript (Vanilla)
+  - Backend  : Node.js com Express
+  - Base de Dados: MySQL 8.0
+
+A plataforma permite que alunos se registem, se inscrevam em cursos, e acedam
+às aulas em vídeo (YouTube integrado) após ativação pelo administrador.
+O administrador gere cursos, formandos e controla quem tem acesso à plataforma.
+
+
+--------------------------------------------------------------------------------
+2. PRÉ-REQUISITOS DE INSTALAÇÃO
+--------------------------------------------------------------------------------
+
+Antes de iniciar, requisitos de software:
+
+  a) Node.js (versão 18 ou superior)
+     https://nodejs.org
+
+  b) MySQL Server 8.0
+     https://dev.mysql.com/downloads/mysql/
+
+  c) MySQL Workbench (recomendado para gestão visual da BD)
+     https://dev.mysql.com/downloads/workbench/
+
+  d) Um browser moderno (Chrome, Edge ou Firefox)
+
+
+--------------------------------------------------------------------------------
+3. CONFIGURAÇÃO DA BASE DE DADOS
+--------------------------------------------------------------------------------
+
+NOME DA BASE DE DADOS : tdias_formacoes
+UTILIZADOR MySQL       : root
+PASSWORD MySQL         : Admin   (pode ser alterada no ficheiro server.js)
+
+--------------------------------------------------------------------------------
+4. INSTALAÇÃO E ARRANQUE DO SERVIDOR
+--------------------------------------------------------------------------------
+
+PASSO 1 
+
+    npm install
+
+  Módulos necessários (instalados automaticamente):
+    express, mysql2, cors, multer, bcrypt, path, fs
+
+PASSO 2 — Iniciar o servidor Node.js:
+
+    node server.js
+
+  Mensagens esperadas no terminal:
+    ✅ Conexão bem-sucedida ao banco de dados MySQL!
+    🚀 Servidor a rodar em http://localhost:3000
+
+  IMPORTANTE: Este terminal deve permanecer aberto enquanto a plataforma
+  estiver a ser utilizada. Fechar o terminal desliga o servidor.
+
+PASSO 3 — Abrir o frontend:
+  Abra o ficheiro index.html diretamente no browser,
+  ou utilize a extensão Live Server do VS Code (recomendo).
+
+
+--------------------------------------------------------------------------------
+5. CONTAS DE TESTE DISPONÍVEIS
+--------------------------------------------------------------------------------
+
+  ADMINISTRADOR
+  ─────────────
+  Email    : admin@tdias.pt
+  Password : Admin123
+  Acesso   : Painel de administração completo
+
+  ALUNO (com acesso ativo)
+  ─────────────────────────
+  Email    : Claudio@claudio.pt
+  Password : admin123
+  Acesso   : Área de aluno, cursos inscritos
+
+  ALUNO (conta de teste adicional)
+  ──────────────────────────────────
+  Email    : pedro@pedro.pt
+  Password : 12345
+  Acesso   : Área de aluno
+
+
+--------------------------------------------------------------------------------
+6. FLUXO DE TESTES RECOMENDADO
+--------------------------------------------------------------------------------
+
+TESTE 1 — Registo de novo utilizador
+  1. Abrir Registo.html
+  2. Preencher nome, apelido, email e password
+  3. Clicar em "Registar"
+  4. Verificar mensagem de sucesso
+  5. Resultado esperado: conta criada, inativa por omissão
+
+TESTE 2 — Login
+  1. Abrir Login.html
+  2. Introduzir credenciais de um utilizador existente
+  3. Admin → redireciona para admin.html
+  4. Aluno → redireciona para index.html com menu atualizado
+
+TESTE 3 — Recuperação de password
+  1. Abrir Login.html
+  2. Clicar em "Esqueceu a password?"
+  3. Introduzir email e nova password
+  4. Clicar em "Atualizar Password"
+  5. Resultado esperado: password atualizada, login funcional
+
+TESTE 4 — Criação de curso (admin)
+  1. Fazer login como admin@tdias.pt
+  2. Aceder ao Painel Admin
+  3. Preencher todos os campos do formulário
+  4. Fazer upload de imagem
+  5. Clicar "Publicar Curso"
+  6. Resultado esperado: curso aparece na tabela e no catálogo
+
+TESTE 5 — Edição de curso (admin)
+  1. No Painel Admin, clicar no ícone de editar (azul) de um curso
+  2. Alterar um campo (ex: preço)
+  3. Clicar "Guardar"
+  4. Resultado esperado: modal fecha, tabela atualiza com novo valor
+
+TESTE 6 — Gestão de formandos (admin)
+  1. No Painel Admin, clicar no separador "Formandos"
+  2. Verificar lista de utilizadores registados
+  3. Clicar "Ativar" num aluno inativo
+  4. Resultado esperado: estado muda para "Ativo" (verde)
+
+TESTE 7 — Inscrição em curso (aluno)
+  1. Fazer login como aluno
+  2. Navegar até um curso em cursos.html
+  3. Clicar "Aceder ao Curso" → página de descrição
+  4. Clicar "Inscrever-me no Curso"
+  5. Resultado esperado: mensagem de inscrição registada (pendente)
+
+TESTE 8 — Controlo de acesso (aluno inativo)
+  1. Inscrever aluno num curso (ver Teste 7)
+  2. Tentar aceder a player.html?curso=X
+  3. Resultado esperado: mensagem de "Acesso Pendente", sem aulas visíveis
+  4. Admin ativa o aluno (ver Teste 6)
+  5. Aceder novamente ao player
+  6. Resultado esperado: aulas disponíveis
+
+TESTE 9 — Progresso de aula (aluno ativo)
+  1. Fazer login com aluno ativo
+  2. Aceder a um curso com aulas configuradas
+  3. Clicar numa aula na sidebar
+  4. Clicar "Marcar como Concluída"
+  5. Resultado esperado: ícone da aula muda para verde, barra de progresso atualiza
+
+TESTE 10 — Recuperação de password
+  1. Abrir Login.html
+  2. Clicar "Esqueceu a password?"
+  3. Introduzir email registado e nova password
+  4. Submeter
+  5. Resultado esperado: password alterada, login funciona com nova password
+
+
+--------------------------------------------------------------------------------
+7. ESTRUTURA DE FICHEIROS DO PROJETO
+--------------------------------------------------------------------------------
+
+  /
+  ├── server.js              → Servidor Node.js (API REST)
+  ├── package.json           → Dependências npm
+  ├── index.html             → Página inicial
+  ├── cursos.html            → Catálogo de cursos
+  ├── descricao.html         → Detalhe de curso
+  ├── Login.html             → Login e recuperação de password
+  ├── Registo.html           → Registo de novo utilizador
+  ├── perfil.html            → Dashboard do aluno
+  ├── player.html            → Player de vídeo e progresso
+  ├── admin.html             → Painel de administração
+  ├── forum.html             → Página de fórum (estática)
+  ├── blog.html              → Página de blog (estática)
+  ├── script.js              → Lógica frontend principal
+  ├── player.js              → Lógica do player de vídeo
+  ├── style.css              → Estilos globais
+  ├── /uploads               → Imagens dos cursos (gerado automaticamente)
+  ├── /static/images         → Logo e imagens estáticas
+  └── /database              → Ficheiros SQL de exportação da BD
+
+
+--------------------------------------------------------------------------------
+8. NOTAS TÉCNICAS IMPORTANTES
+--------------------------------------------------------------------------------
+
+  • O servidor corre em http://localhost:3000
+  • O frontend comunica com o servidor via fetch() (API REST)
+  • As passwords são encriptadas com bcrypt (salt rounds: 10)
+  • As imagens dos cursos são guardadas na pasta /uploads
+  • A sessão do utilizador é guardada em sessionStorage do browser
+  • As aulas em vídeo são incorporadas via YouTube embed (video_id na BD)
+  • Para adicionar aulas a um curso, inserir diretamente na tabela 'aulas'
+    com o campo video_id = ID do YouTube (ex: "dQw4w9WgXcQ")
+
+
+
+================================================================================
+  Desenvolvido por: Cláudio Mourão
+  Data de entrega : Junho 2026
+  Tecnologias     : HTML5 · CSS3 · JavaScript · Node.js · MySQL
+================================================================================

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="PT-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - TDias Formações</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        
+    
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="static/images/logo.png" alt="TDias Logo">
+                </a>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cursos.html">Cursos</a></li>
+                    <li><a href="contacto.html" class="active" style="color:#00bcd4;">Contacto</a></li>
+                    <li><a href="Login.html" class="btn-login">Entrar</a></li>
+                    <li><a href="Registo.html" class="btn-registar">Registar</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle"><span></span><span></span><span></span></div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="contacto-hero">
+        <h1><i class="fa fa-envelope-o"></i> Fala Connosco</h1>
+        <p>Tens dúvidas, sugestões ou precisas de ajuda? A equipa TDias está aqui para ti.</p>
+    </div>
+
+    <div class="contacto-layout">
+
+        <!-- FORMULÁRIO -->
+        <div class="contacto-form-wrapper">
+            <h2><i class="fa fa-paper-plane"></i> Enviar Mensagem</h2>
+
+            <form id="contacto-form">
+                <div class="campo-row">
+                    <div class="campo-grupo">
+                        <label for="contacto-nome">Nome</label>
+                        <input type="text" id="contacto-nome" placeholder="O teu nome" required>
+                    </div>
+                    <div class="campo-grupo">
+                        <label for="contacto-apelido">Apelido</label>
+                        <input type="text" id="contacto-apelido" placeholder="O teu apelido" required>
+                    </div>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="contacto-email">Email</label>
+                    <input type="email" id="contacto-email" placeholder="o.teu@email.com" required>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="contacto-assunto">Assunto</label>
+                    <select id="contacto-assunto" required>
+                        <option value="">Selecione o assunto...</option>
+                        <option value="informacoes">Informações sobre cursos</option>
+                        <option value="pagamento">Questões de pagamento</option>
+                        <option value="acesso">Problemas de acesso</option>
+                        <option value="parceria">Proposta de parceria</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="contacto-mensagem">Mensagem</label>
+                    <textarea id="contacto-mensagem" placeholder="Escreve a tua mensagem aqui..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar" id="btn-enviar">
+                    <i class="fa fa-paper-plane"></i> Enviar Mensagem
+                </button>
+
+                <div class="feedback-msg" id="feedback-msg"></div>
+            </form>
+        </div>
+
+        <!-- SIDEBAR INFO -->
+        <aside class="contacto-info">
+
+            <!-- Email -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-icon"><i class="fa fa-envelope"></i></div>
+                    <h3>Email</h3>
+                </div>
+                <p>Para questões gerais:</p>
+                <a href="mailto:EMAIL_DESTINO">EMAIL_DESTINO</a>
+            </div>
+
+            <!-- Telefone -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-icon"><i class="fa fa-phone"></i></div>
+                    <h3>Telefone</h3>
+                </div>
+                <p>Disponível nos dias úteis:</p>
+                <a href="tel:+351XXXXXXXXX">+351 XXX XXX XXX</a>
+            </div>
+
+            <!-- Redes Sociais -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-icon"><i class="fa fa-share-alt"></i></div>
+                    <h3>Redes Sociais</h3>
+                </div>
+                <p>Segue-nos e fica a par de tudo:</p>
+                <div class="redes-sociais">
+                    <a href="#" class="rede-btn" title="Facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="rede-btn" title="Instagram"><i class="fa fa-instagram"></i></a>
+                    <a href="#" class="rede-btn" title="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                    <a href="#" class="rede-btn" title="YouTube"><i class="fa fa-youtube-play"></i></a>
+                </div>
+            </div>
+
+            <!-- Horário -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <div class="info-icon"><i class="fa fa-clock-o"></i></div>
+                    <h3>Horário de Atendimento</h3>
+                </div>
+                <div class="horario-linha">
+                    <span class="dia">Segunda — Sexta</span>
+                    <span class="hora">09:00 — 18:00</span>
+                </div>
+                <div class="horario-linha">
+                    <span class="dia">Sábado</span>
+                    <span class="hora">10:00 — 13:00</span>
+                </div>
+                <div class="horario-linha">
+                    <span class="dia">Domingo</span>
+                    <span class="hora fechado">Encerrado</span>
+                </div>
+            </div>
+
+        </aside>
+    </div>
+
+    <footer class="main-footer">
+        <div class="social-icons">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2026 TDias Formações. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+    document.getElementById("contacto-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const btn        = document.getElementById("btn-enviar");
+        const feedback   = document.getElementById("feedback-msg");
+
+        const dados = {
+            nome:      document.getElementById("contacto-nome").value.trim(),
+            apelido:   document.getElementById("contacto-apelido").value.trim(),
+            email:     document.getElementById("contacto-email").value.trim(),
+            assunto:   document.getElementById("contacto-assunto").value,
+            mensagem:  document.getElementById("contacto-mensagem").value.trim()
+        };
+
+        btn.disabled = true;
+        btn.innerHTML = `<i class="fa fa-spinner fa-spin"></i> A enviar...`;
+        feedback.style.display = "none";
+
+        try {
+            const resposta = await fetch("http://localhost:3000/api/contacto", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dados)
+            });
+
+            const resultado = await resposta.json();
+
+            if (resposta.ok) {
+                feedback.className  = "feedback-msg sucesso";
+                feedback.innerHTML  = "Mensagem enviada com sucesso! Responderemos em breve.";
+                feedback.style.display = "block";
+                document.getElementById("contacto-form").reset();
+            } else {
+                throw new Error(resultado.error || "Erro desconhecido");
+            }
+        } catch (erro) {
+            feedback.className  = "feedback-msg erro";
+            feedback.innerHTML  = "❌ Erro ao enviar a mensagem. Tenta novamente ou contacta-nos diretamente por email.";
+            feedback.style.display = "block";
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fa fa-paper-plane"></i> Enviar Mensagem`;
+        }
+    });
+    </script>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

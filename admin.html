@@ -20,8 +20,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="cursos.html">Formações</a></li>
-                    <li><a href="#">Fórum</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
                     <li><a href="login.html" class="btn-login">Entrar</a></li>
                     <li><a href="registo.html" class="btn-registar">Registar</a></li>
                 </ul>
@@ -42,7 +41,7 @@
 
         <div class="admin-content">
 
-            <!-- SECÇÃO: CURSOS -->
+            <!-- SECÇÃO DE CURSOS -->
             <div id="secao-cursos">
                 <div class="admin-header-title">
                     <h2>Painel de Administração</h2>
@@ -119,7 +118,7 @@
                 </div>
             </div>
 
-            <!-- SECÇÃO: FORMANDOS -->
+            <!-- SECÇÃO DE FORMANDOS -->
             <div id="secao-formandos" style="display:none;">
                 <div class="admin-header-title">
                     <h2>Gestão de Formandos</h2>
@@ -129,11 +128,9 @@
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th>Nome</th>
-                                <th>Email</th>
+                                <th>Formando</th>
                                 <th>Cargo</th>
-                                <th>Estado</th>
-                                <th>Ação</th>
+                                <th>Cursos / Estado</th>
                             </tr>
                         </thead>
                         <tbody id="admin-tabela-formandos"></tbody>
@@ -149,7 +146,7 @@
     </footer>
 
     <script>
-        // Lógica dos separadores (tabs)
+        // separadores (tabs)
         document.getElementById("tab-cursos").addEventListener("click", (e) => {
             e.preventDefault();
             document.getElementById("secao-cursos").style.display = "block";
